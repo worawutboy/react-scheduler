@@ -1,7 +1,14 @@
 import { ChangeEvent, FC, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import debounce from "lodash.debounce";
 import { useCalendar } from "@/context/CalendarProvider";
-import { Day, SchedulerData, SchedulerProjectData, TooltipData, ZoomLevel } from "@/types/global";
+import {
+  Day,
+  SchedulerData,
+  SchedulerItemData,
+  SchedulerProjectData,
+  TooltipData,
+  ZoomLevel
+} from "@/types/global";
 import { getTooltipData } from "@/utils/getTooltipData";
 import { getDatesRange } from "@/utils/getDatesRange";
 import { usePagination } from "@/hooks/usePagination";
@@ -20,8 +27,15 @@ const initialTooltipData: TooltipData = {
   }
 };
 
-export const Calendar: FC<CalendarProps> = ({ data, onTileClick, onItemClick, topBarWidth }) => {
+export const Calendar: FC<CalendarProps> = ({
+  data,
+  onTileClick,
+  onItemClick,
+  topBarWidth,
+  tooltipComponent
+}) => {
   const [tooltipData, setTooltipData] = useState<TooltipData>(initialTooltipData);
+  const [tooltipDataItem, setTooltipDataItem] = useState<SchedulerItemData | undefined>(undefined);
   const [filteredData, setFilteredData] = useState(data);
   const [isVisible, setIsVisible] = useState(false);
   const [searchPhrase, setSearchPhrase] = useState("");
@@ -69,6 +83,8 @@ export const Calendar: FC<CalendarProps> = ({ data, onTileClick, onItemClick, to
           includeTakenHoursOnWeekendsInDayView
         );
         setTooltipData({ coords: { x, y }, resourceIndex, disposition });
+        const resourceData = page[0];
+        setTooltipDataItem(resourceData);
         setIsVisible(true);
       },
       300
@@ -147,7 +163,7 @@ export const Calendar: FC<CalendarProps> = ({ data, onTileClick, onItemClick, to
           <EmptyBox />
         )}
         {isVisible && tooltipData?.resourceIndex > -1 && (
-          <Tooltip tooltipData={tooltipData} zoom={zoom} />
+          <Tooltip component={tooltipComponent()} tooltipData={tooltipData} zoom={zoom} />
         )}
       </StyledInnerWrapper>
     </StyledOuterWrapper>

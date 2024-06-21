@@ -39,6 +39,7 @@ export type SchedulerRow = {
 };
 
 export type SchedulerItemClickData = Omit<SchedulerRow, "data">;
+export type SchedulerItemData = Omit<SchedulerRow, "data">;
 
 export type PaginatedSchedulerData = PaginatedSchedulerRow[];
 

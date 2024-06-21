@@ -14,7 +14,7 @@ import {
 } from "./styles";
 import { TooltipProps } from "./types";
 
-const Tooltip: FC<TooltipProps> = ({ tooltipData, zoom }) => {
+const Tooltip: FC<TooltipProps> = ({ tooltipData, zoom, component }) => {
   const { taken, free, over } = useLanguage();
 
   const { coords, disposition } = tooltipData;
@@ -37,26 +37,29 @@ const Tooltip: FC<TooltipProps> = ({ tooltipData, zoom }) => {
   return (
     <StyledTooltipWrapper ref={tooltipRef}>
       <StyledTooltipContent>
-        <StyledContentWrapper>
-          <StyledInnerWrapper>
-            <Icon iconName="calendarWarning" height="14" />
-            <StyledTextWrapper>
-              <StyledText>{`${taken}: ${disposition.taken.hours}h ${disposition.taken.minutes}m`}</StyledText>
-              {(disposition.overtime.hours > 0 || disposition.overtime.minutes > 0) && (
-                <>
-                  &nbsp;{"-"}&nbsp;
-                  <StyledOvertimeWarning>{`${disposition.overtime.hours}h ${disposition.overtime.minutes}m ${over}`}</StyledOvertimeWarning>
-                </>
-              )}
-            </StyledTextWrapper>
-          </StyledInnerWrapper>
-          <StyledInnerWrapper>
-            <Icon iconName="calendarFree" height="14" />
-            <StyledTextWrapper>
-              <StyledText>{`${free}: ${disposition.free.hours}h ${disposition.free.minutes}m`}</StyledText>
-            </StyledTextWrapper>
-          </StyledInnerWrapper>
-        </StyledContentWrapper>
+        {!component && (
+          <StyledContentWrapper>
+            <StyledInnerWrapper>
+              <Icon iconName="calendarWarning" height="14" />
+              <StyledTextWrapper>
+                <StyledText>{`${taken}: ${disposition.taken.hours}h ${disposition.taken.minutes}m`}</StyledText>
+                {(disposition.overtime.hours > 0 || disposition.overtime.minutes > 0) && (
+                  <>
+                    &nbsp;{"-"}&nbsp;
+                    <StyledOvertimeWarning>{`${disposition.overtime.hours}h ${disposition.overtime.minutes}m ${over}`}</StyledOvertimeWarning>
+                  </>
+                )}
+              </StyledTextWrapper>
+            </StyledInnerWrapper>
+            <StyledInnerWrapper>
+              <Icon iconName="calendarFree" height="14" />
+              <StyledTextWrapper>
+                <StyledText>{`${free}: ${disposition.free.hours}h ${disposition.free.minutes}m`}</StyledText>
+              </StyledTextWrapper>
+            </StyledInnerWrapper>
+          </StyledContentWrapper>
+        )}
+        {component}
       </StyledTooltipContent>
       <StyledTooltipBeak />
     </StyledTooltipWrapper>

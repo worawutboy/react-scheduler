@@ -19,7 +19,8 @@ const Scheduler = ({
   onFilterData,
   onClearFilterData,
   onItemClick,
-  isLoading
+  isLoading,
+  tooltipComponent
 }: SchedulerProps) => {
   const appConfig: Config = useMemo(
     () => ({
@@ -70,6 +71,7 @@ const Scheduler = ({
               <StyledInnerWrapper>
                 <Calendar
                   data={data}
+                  tooltipComponent={tooltipComponent}
                   onTileClick={onTileClick}
                   topBarWidth={topBarWidth ?? 0}
                   onItemClick={onItemClick}

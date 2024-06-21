@@ -1,7 +1,9 @@
+import React from "react";
 import {
   Config,
   SchedulerData,
   SchedulerItemClickData,
+  SchedulerItemData,
   SchedulerProjectData
 } from "@/types/global";
 import { ParsedDatesRange } from "@/utils/getDatesRange";
@@ -16,6 +18,7 @@ export type SchedulerProps = {
   onFilterData?: () => void;
   onClearFilterData?: () => void;
   onItemClick?: (data: SchedulerItemClickData) => void;
+  tooltipComponent?: (data: SchedulerItemData) => React.ReactNode;
 };
 
 export type StyledOutsideWrapperProps = {
