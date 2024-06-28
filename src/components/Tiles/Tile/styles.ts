@@ -17,9 +17,10 @@ export const StyledTileWrapper = styled.button`
 `;
 
 export const StyledTextWrapper = styled.div`
-  margin: 10px 16px;
   position: relative;
   display: flex;
+  align-item: center;
+  justify-content: center;
   font-size: 10px;
   letter-spacing: 0.5px;
   line-height: 12px;
@@ -33,7 +34,6 @@ export const StyledText = styled.p<StyledTextProps>`
   &:first-child {
     &::after {
       content: "|";
-      margin: 0 3px;
     }
   }
 `;
@@ -45,6 +45,6 @@ export const StyledDescription = styled.p`
 
 export const StyledStickyWrapper = styled.div`
   position: sticky;
-  left: ${leftColumnWidth + 16}px;
+  left: ${leftColumnWidth}px;
   overflow: hidden;
 `;

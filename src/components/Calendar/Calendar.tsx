@@ -35,7 +35,7 @@ export const Calendar: FC<CalendarProps> = ({
   tooltipComponent
 }) => {
   const [tooltipData, setTooltipData] = useState<TooltipData>(initialTooltipData);
-  const [tooltipDataItem, setTooltipDataItem] = useState<SchedulerItemData | undefined>(undefined);
+  const [tooltipDataItem, setTooltipDataItem] = useState<SchedulerItemData | null>(null);
   const [filteredData, setFilteredData] = useState(data);
   const [isVisible, setIsVisible] = useState(false);
   const [searchPhrase, setSearchPhrase] = useState("");
@@ -83,9 +83,10 @@ export const Calendar: FC<CalendarProps> = ({
           includeTakenHoursOnWeekendsInDayView
         );
         setTooltipData({ coords: { x, y }, resourceIndex, disposition });
-        const resourceData = page[0];
-        setTooltipDataItem(resourceData);
-        setIsVisible(true);
+        if (disposition?.data && disposition?.data?.length > 0) {
+          setTooltipDataItem(disposition.data[0]);
+          setIsVisible(true);
+        }
       },
       300
     )
@@ -132,7 +133,6 @@ export const Calendar: FC<CalendarProps> = ({
 
   useEffect(() => {
     if (searchPhrase) return;
-
     setFilteredData(data);
   }, [data, searchPhrase]);
 
@@ -162,8 +162,15 @@ export const Calendar: FC<CalendarProps> = ({
         ) : (
           <EmptyBox />
         )}
-        {isVisible && tooltipData?.resourceIndex > -1 && (
-          <Tooltip component={tooltipComponent()} tooltipData={tooltipData} zoom={zoom} />
+        {isVisible && tooltipData?.resourceIndex > -1 && !tooltipComponent && (
+          <Tooltip tooltipData={tooltipData} zoom={zoom} />
+        )}
+        {isVisible && tooltipData?.resourceIndex > -1 && tooltipComponent && (
+          <Tooltip
+            component={tooltipComponent(tooltipDataItem)}
+            tooltipData={tooltipData}
+            zoom={zoom}
+          />
         )}
       </StyledInnerWrapper>
     </StyledOuterWrapper>

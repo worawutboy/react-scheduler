@@ -18,7 +18,7 @@ export type SchedulerProps = {
   onFilterData?: () => void;
   onClearFilterData?: () => void;
   onItemClick?: (data: SchedulerItemClickData) => void;
-  tooltipComponent?: (data: SchedulerItemData) => React.ReactNode;
+  tooltipComponent?: (data?: SchedulerItemData | null) => React.ReactNode;
 };
 
 export type StyledOutsideWrapperProps = {

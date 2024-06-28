@@ -4,7 +4,6 @@ import { marginPaddingReset } from "@/styles";
 export const StyledTooltipWrapper = styled.div`
   padding: 8px 16px;
   position: absolute;
-  background-color: ${({ theme }) => theme.colors.blue900};
   border-radius: 8px;
   z-index: 3;
   transition: all 0.25s;

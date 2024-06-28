@@ -8,7 +8,7 @@ import {
   StyledOvertimeWarning,
   StyledText,
   StyledTextWrapper,
-  StyledTooltipBeak,
+  // StyledTooltipBeak,
   StyledTooltipContent,
   StyledTooltipWrapper
 } from "./styles";
@@ -24,13 +24,10 @@ const Tooltip: FC<TooltipProps> = ({ tooltipData, zoom, component }) => {
   useLayoutEffect(() => {
     // re calculate tooltip width before repaint
     if (!tooltipRef.current) return;
-
     const { width: tooltipWidth } = tooltipRef.current.getBoundingClientRect();
-
     const xOffset = tooltipWidth / 2 + width / 2;
     tooltipRef.current.style.left = `${coords.x - xOffset}px`;
     tooltipRef.current.style.top = `${coords.y + 8}px`;
-
     // disposition.overtime affects tooltip's width, thus it's needed to recalculate it's coords whenever overtime changes
   }, [coords.x, width, disposition.overtime, coords.y]);
 
@@ -61,7 +58,7 @@ const Tooltip: FC<TooltipProps> = ({ tooltipData, zoom, component }) => {
         )}
         {component}
       </StyledTooltipContent>
-      <StyledTooltipBeak />
+      {/* <StyledTooltipBeak /> */}
     </StyledTooltipWrapper>
   );
 };

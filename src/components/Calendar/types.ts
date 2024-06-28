@@ -11,7 +11,7 @@ export type CalendarProps = {
   topBarWidth: number;
   onTileClick?: (data: SchedulerProjectData) => void;
   onItemClick?: (data: SchedulerItemClickData) => void;
-  tooltipComponent?: (data: SchedulerItemData) => React.ReactNode;
+  tooltipComponent?: (data?: SchedulerItemData | null) => React.ReactNode;
 };
 
 export type StyledSpanProps = {

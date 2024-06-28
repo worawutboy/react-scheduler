@@ -14,7 +14,8 @@ export const getOccupancy = (
     return {
       taken: { hours: 0, minutes: 0 },
       free: { hours: 0, minutes: 0 },
-      overtime: { hours: 0, minutes: 0 }
+      overtime: { hours: 0, minutes: 0 },
+      data: null
     };
   const occupancy = resource.flat(2).filter((item) => {
     if (zoom === 0) {
@@ -31,7 +32,10 @@ export const getOccupancy = (
     }
   });
 
-  return zoom === 0
-    ? getWeekOccupancy(occupancy, focusedDate, zoom)
-    : getDayOccupancy(occupancy, focusedDate, zoom, includeTakenHoursOnWeekendsInDayView);
+  return {
+    ...(zoom === 0
+      ? getWeekOccupancy(occupancy, focusedDate, zoom)
+      : getDayOccupancy(occupancy, focusedDate, zoom, includeTakenHoursOnWeekendsInDayView)),
+    data: occupancy
+  };
 };

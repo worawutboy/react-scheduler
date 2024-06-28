@@ -39,7 +39,7 @@ export type SchedulerRow = {
 };
 
 export type SchedulerItemClickData = Omit<SchedulerRow, "data">;
-export type SchedulerItemData = Omit<SchedulerRow, "data">;
+export type SchedulerItemData = SchedulerProjectData;
 
 export type PaginatedSchedulerData = PaginatedSchedulerRow[];
 
@@ -157,6 +157,7 @@ export type OccupancyData = {
   taken: TimeUnits;
   free: TimeUnits;
   overtime: TimeUnits;
+  data?: SchedulerProjectData[] | null;
 };
 
 export type TooltipData = {

@@ -5,7 +5,7 @@ import { getTileProperties } from "@/utils/getTileProperties";
 import { tileDefaultBgColor } from "@/constants";
 import { getTileTextColor } from "@/utils/getTileTextColor";
 import {
-  StyledDescription,
+  // StyledDescription,
   StyledStickyWrapper,
   StyledText,
   StyledTextWrapper,
@@ -24,22 +24,22 @@ const Tile: FC<TileProps> = ({ row, data, zoom, onTileClick }) => {
     data.endDate,
     zoom
   );
-
   return (
     <StyledTileWrapper
       style={{
         left: `${x}px`,
         top: `${y}px`,
         backgroundColor: `${data.bgColor ?? tileDefaultBgColor}`,
-        width: `${width}px`,
-        color: getTileTextColor(data.bgColor ?? "")
+        width: `${46}px`,
+        color: getTileTextColor(data.bgColor ?? ""),
+        marginLeft: 3
       }}
       onClick={() => onTileClick?.(data)}>
       <StyledTextWrapper>
         <StyledStickyWrapper>
           <StyledText bold>{data.title}</StyledText>
-          <StyledText>{data.subtitle}</StyledText>
-          <StyledDescription>{data.description}</StyledDescription>
+          {/* <StyledText>{data.subtitle}</StyledText> */}
+          {/* <StyledDescription>{data.description}</StyledDescription> */}
         </StyledStickyWrapper>
       </StyledTextWrapper>
     </StyledTileWrapper>
