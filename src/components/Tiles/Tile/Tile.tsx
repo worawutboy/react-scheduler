@@ -24,10 +24,11 @@ const Tile: FC<TileProps> = ({ row, data, zoom, onTileClick }) => {
     data.endDate,
     zoom
   );
+
   return (
     <StyledTileWrapper
       style={{
-        left: `${x}px`,
+        left: `${x - 50}px`,
         top: `${y}px`,
         backgroundColor: `${data.bgColor ?? tileDefaultBgColor}`,
         width: `${46}px`,

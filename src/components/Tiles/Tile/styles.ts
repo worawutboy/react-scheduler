@@ -30,7 +30,9 @@ export const StyledText = styled.p<StyledTextProps>`
   ${marginPaddingReset}
   ${truncate}
   display: inline;
+  font-size: 14px;
   font-weight: ${({ bold }) => (bold ? "600" : "400")};
+  -webkit-text-stroke: 0.3px lightgray;
   &:first-child {
     &::after {
       content: "|";

@@ -30,7 +30,7 @@ const Topbar: FC<TopbarProps> = ({ width }) => {
   };
 
   return (
-    <Wrapper width={width}>
+    <Wrapper width={width} style={{ justifyContent: "center" }}>
       <Filters>
         {filterButtonState >= 0 && (
           <IconButton
@@ -59,7 +59,7 @@ const Topbar: FC<TopbarProps> = ({ width }) => {
           <Icon iconName="arrowRight" height="15" fill={colors.blue900} />
         </NavBtn>
       </NavigationWrapper>
-      <Zoom>
+      {/* <Zoom>
         {topbar.view}
         <IconButton
           isDisabled={!isPrevZoom}
@@ -75,7 +75,7 @@ const Topbar: FC<TopbarProps> = ({ width }) => {
           iconName="add"
           width="14"
         />
-      </Zoom>
+      </Zoom> */}
     </Wrapper>
   );
 };

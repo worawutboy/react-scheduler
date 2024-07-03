@@ -15,19 +15,19 @@ export const StyledButton = styled.button<StyledPaginationButton>`
   width: 100%;
   display: flex;
   align-items: center;
-  background: ${({ theme }) => theme.colors.white};
-  border: 1px solid ${({ theme }) => theme.colors.blue400};
+  background: #FFF;
+  border: 1px solid #0F4C81};
   border-radius: 4px;
   font-size: 14px;
-  color: ${({ theme }) => theme.colors.blue400};
+  color: #0F4C81;
   line-height: 150%;
   letter-spacing: 1px;
   cursor: pointer;
   opacity: ${({ isVisible }) => (isVisible ? "1" : "0")};
   pointer-events: ${({ isVisible }) => (isVisible ? "auto" : "none")};
   &:hover {
-    transition: 0.5s ease;
-    background-color: ${({ theme }) => theme.colors.blue200};
+    transition: 0.2s ease;
+    background-color: rgba(15, 76, 129, 0.2);
   }
 `;
 
